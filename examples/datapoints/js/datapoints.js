@@ -65,7 +65,7 @@ class MyGlobeKit {
       wasmPath:
         "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/gkweb_bg.wasm",
       attributes: {
-        alpha: false,
+        alpha: true,
       },
     };
 
