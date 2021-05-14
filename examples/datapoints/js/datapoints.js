@@ -4,7 +4,7 @@ import {
   GlobeKitView,
   PointGlobe,
   Points,
-} from "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/globekit.esm.js";
+} from "https://cdn.jsdelivr.net/gh/meetanyway/globekit/globekit.esm.js";
 
 // Api Key from your GlobeKit account
 const apiKey =
@@ -14,7 +14,7 @@ const apiKey =
 const textures = {
   // Clouds.png is availible in assets folder
   noise:
-    "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/examples/datapoints/assets/clouds.png",
+    "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/clouds.png",
 };
 
 // Makes a random geojson object of count length. This should be replaced with a geojson asset load
@@ -62,10 +62,9 @@ class MyGlobeKit {
 
     this.gkOptions = {
       apiKey,
-      wasmPath:
-        "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/gkweb_bg.wasm",
+      wasmPath: "https://cdn.jsdelivr.net/gh/meetanyway/globekit/gkweb_bg.wasm",
       attributes: {
-        alpha: false,
+        alpha: true,
       },
       clearColor: [17.0, 17.0, 17.0, 1.0],
     };
@@ -108,7 +107,7 @@ class MyGlobeKit {
     // Backgrounds provide more control over the look of the rendered scene
     // They require a texture image source
     // this.background = new Background(
-    //   "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/examples/datapoints/assets/bg.png"
+    //   "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/bg.png"
     // );
     // // Adding this drawable first ensures that it is drawn first.
     // this.gkview.addDrawable(this.background);
@@ -118,7 +117,7 @@ class MyGlobeKit {
     // **********************************************************************
     this.atmosphere = new Atmosphere({
       texture:
-        "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/examples/datapoints/assets/disk.png",
+        "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/disk.png",
     });
     this.atmosphere.nScale = 1.02;
     this.gkview.addDrawable(this.atmosphere);
@@ -128,7 +127,7 @@ class MyGlobeKit {
     // **********************************************************************
     // Load the binary from static server
     fetch(
-      "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/examples/datapoints/assets/pointglobe.bin"
+      "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/pointglobe.bin"
     )
       .then((res) => res.arrayBuffer())
       .then((data) => {
