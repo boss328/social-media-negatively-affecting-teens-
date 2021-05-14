@@ -1,6 +1,5 @@
 import {
   Atmosphere,
-  Background,
   GKUtils,
   GlobeKitView,
   PointGlobe,
@@ -107,11 +106,11 @@ class MyGlobeKit {
     // **********************************************************************
     // Backgrounds provide more control over the look of the rendered scene
     // They require a texture image source
-    this.background = new Background(
-      "https://cdn.jsdelivr.net/gh/meetanyway/globekit@main/examples/datapoints/assets/bg.png"
-    );
-    // Adding this drawable first ensures that it is drawn first.
-    this.gkview.addDrawable(this.background);
+    // this.background = new Background(
+    //   "https://cdn.jsdelivr.net/gh/meetanyway/globekit@main/examples/datapoints/assets/bg.png"
+    // );
+    // // Adding this drawable first ensures that it is drawn first.
+    // this.gkview.addDrawable(this.background);
 
     // **********************************************************************
     //                   ATMOSPHERES
