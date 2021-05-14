@@ -8,7 +8,7 @@ import {
 
 // Api Key from your GlobeKit account
 const apiKey =
-  "gk_aa9d408894acd715451e6d4ee65a34eb430fb4044e236f857731523137eeecabcd0b5f749792ee3a765b0c4f2b752db761ddabc81be850f9379f7ef4063c5e48";
+  "9d408894acd715451e6d4ee65a34eb430fb4044e236f857731523137eeecabcd0b5f749792ee3a765b0c4f2b752db761ddabc81be850f9379f7ef4063c5e48";
 
 // Texture object for PointGlobe sparkle/shimmer
 const textures = {
