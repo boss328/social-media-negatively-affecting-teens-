@@ -65,8 +65,9 @@ class MyGlobeKit {
       wasmPath:
         "https://cdn.jsdelivr.net/gh/meetanyway/globekit@latest/gkweb_bg.wasm",
       attributes: {
-        alpha: true,
+        alpha: false,
       },
+      clearColor: [17.0, 17.0, 17.0, 1.0],
     };
 
     // Create the GlobeKitView object
