@@ -6,13 +6,13 @@ import {
 
 // Api Key from your GlobeKit account
 const apiKey =
-  "9d408894acd715451e6d4ee65a34eb430fb4044e236f857731523137eeecabcd0b5f749792ee3a765b0c4f2b752db761ddabc81be850f9379f7ef4063c5e48";
+  "gk_aa9d408894acd715451e6d4ee65a34eb430fb4044e236f857731523137eeecabcd0b5f749792ee3a765b0c4f2b752db761ddabc81be850f9379f7ef4063c5e48";
 
 // Texture object for PointGlobe sparkle/shimmer
 const textures = {
   // Clouds.png is availible in assets folder
   noise:
-    "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/datapoints/assets/clouds.png",
+    "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/assets/clouds.png",
 };
 
 class MyGlobeKit {
@@ -68,7 +68,7 @@ class MyGlobeKit {
     // **********************************************************************
     this.atmosphere = new Atmosphere({
       texture:
-        "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/datapoints/assets/disk.png",
+        "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/assets/disk.png",
     });
     this.atmosphere.nScale = 1.02;
     this.gkview.addDrawable(this.atmosphere);
@@ -78,7 +78,7 @@ class MyGlobeKit {
     // **********************************************************************
     // Load the binary from static server
     fetch(
-      "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/datapoints/assets/pointglobe.bin"
+      "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/assets/pointglobe.bin"
     )
       .then((res) => res.arrayBuffer())
       .then((data) => {
