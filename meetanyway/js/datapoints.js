@@ -1,9 +1,7 @@
 import {
   Atmosphere,
-  GKUtils,
   GlobeKitView,
   PointGlobe,
-  Points,
 } from "https://cdn.jsdelivr.net/gh/meetanyway/globekit/globekit.esm.js";
 
 // Api Key from your GlobeKit account
@@ -14,44 +12,8 @@ const apiKey =
 const textures = {
   // Clouds.png is availible in assets folder
   noise:
-    "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/clouds.png",
+    "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/datapoints/assets/clouds.png",
 };
-
-// Makes a random geojson object of count length. This should be replaced with a geojson asset load
-const generateRandomGeoJson = (count) => {
-  const geojson = {
-    type: "FeatureCollection",
-    features: [],
-  };
-
-  for (let i = 0; i < count; i += 1) {
-    const feature = {
-      type: "Feature",
-      properties: {},
-      geometry: {
-        type: "Point",
-        coordinates: [],
-      },
-    };
-
-    const lat = Math.random() * 180 - 90;
-    const lon = Math.random() * 360 - 180;
-    // Geojson records longitude first, this is a common gotcha
-    feature.geometry.coordinates = [lon, lat];
-
-    // Geojson properties are the catchall for any data values
-    feature.properties.mythicalCreatureSightings = Math.floor(
-      Math.random() * 30
-    );
-
-    geojson.features.push(feature);
-  }
-
-  return geojson;
-};
-
-// Generate some random Geojson
-const randomGeojson = generateRandomGeoJson(10000);
 
 class MyGlobeKit {
   constructor(canvas) {
@@ -64,8 +26,9 @@ class MyGlobeKit {
       apiKey,
       wasmPath: "https://cdn.jsdelivr.net/gh/meetanyway/globekit/gkweb_bg.wasm",
       attributes: {
-        alpha: false,
+        alpha: true,
       },
+      clearColor: [0.0, 0.0, 0.0, 0.0],
     };
 
     // Create the GlobeKitView object
@@ -101,22 +64,11 @@ class MyGlobeKit {
     };
 
     // **********************************************************************
-    //                   BACKGROUNDS
-    // **********************************************************************
-    // Backgrounds provide more control over the look of the rendered scene
-    // They require a texture image source
-    // this.background = new Background(
-    //   "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/bg.png"
-    // );
-    // // Adding this drawable first ensures that it is drawn first.
-    // this.gkview.addDrawable(this.background);
-
-    // **********************************************************************
     //                   ATMOSPHERES
     // **********************************************************************
     this.atmosphere = new Atmosphere({
       texture:
-        "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/disk.png",
+        "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/datapoints/assets/disk.png",
     });
     this.atmosphere.nScale = 1.02;
     this.gkview.addDrawable(this.atmosphere);
@@ -126,7 +78,7 @@ class MyGlobeKit {
     // **********************************************************************
     // Load the binary from static server
     fetch(
-      "https://cdn.jsdelivr.net/gh/meetanyway/globekit/examples/datapoints/assets/pointglobe.bin"
+      "https://cdn.jsdelivr.net/gh/meetanyway/globekit/meetanyway/datapoints/assets/pointglobe.bin"
     )
       .then((res) => res.arrayBuffer())
       .then((data) => {
@@ -137,7 +89,7 @@ class MyGlobeKit {
           randomPointSizeRatio: 0.1,
           minPointAlpha: 0.0,
           minPointSize: 0.006,
-          color: "#F300A6",
+          color: "#FFFFFF",
         };
         this.pointglobe = new PointGlobe(textures, data, pointglobeParams);
         this.pointglobe.setInteractive(true, true, false);
@@ -147,27 +99,6 @@ class MyGlobeKit {
         this.gkview.addDrawable(this.pointglobe, () => {
           this.gkview.startDrawing();
         });
-
-        // **********************************************************************
-        //                   POINTS
-        // **********************************************************************
-        this.points = new Points();
-
-        // Transforms allow you to specify how data influences geometry
-        this.points.transform = (element, point) => {
-          // We are lerping colors based on a property from the geojson
-          point.color = GKUtils.lerpColor(
-            "#ff0000",
-            "#00ff00",
-            element.properties.mythicalCreatureSightings / 30
-          );
-          // Transforms have to return the point object
-          return point;
-        };
-        // Add geojson to the points object now that the transform is defined
-        this.points.addGeojson(randomGeojson);
-        this.points.setInteractive(true, true, false);
-        this.gkview.addDrawable(this.points);
       });
   }
 }
